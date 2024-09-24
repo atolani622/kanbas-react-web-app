@@ -13,7 +13,7 @@ export default function AssignmentEditor() {
             <label htmlFor="wd-points">Points</label>
           </td>
           <td>
-            <input id="wd-points" />
+            <input id="wd-points" placeholder="100" />
           </td>
         </tr>
         {<tr>
@@ -22,9 +22,9 @@ export default function AssignmentEditor() {
           </td>
           <td>
             <select id="wd-group">
-              <option value="Assignments">ASSIGNMENTS</option>
+              <option selected value="Assignments">ASSIGNMENTS</option>
               <option value="Quizes">QUIZZES</option>
-              <option selected value="Exams">
+              <option value="Exams">
                 EXAMS</option>
               <option value="Project">PROJECT</option>
             </select>
@@ -74,7 +74,7 @@ export default function AssignmentEditor() {
             <label htmlFor="wd-assgin-to">Assign</label>
           </td>
           <td>
-            <input id="wd-assign-to" />
+            <input id="wd-assign-to" placeholder="Everyone" />
           </td>
         </tr>
         <tr>

@@ -16,7 +16,46 @@ export default function Assignments() {
             </a>
           </li>
           <li className="wd-assignment-list-item">
-            {/* Complete On Your Own */}
+          <a className="wd-assignment-link"
+              href="#/Kanbas/Courses/1234/Assignments/456">
+              A2 - Assignment 2
+            </a>
+          </li>
+          <li className="wd-assignment-list-item">
+          <a className="wd-assignment-link"
+              href="#/Kanbas/Courses/1234/Assignments/456">
+              A3 - Assignment 3
+            </a>
+          </li>
+          <li className="wd-assignment-list-item">
+          <a className="wd-assignment-link"
+              href="#/Kanbas/Courses/1234/Assignments/456">
+              A4 - Assignment 4
+            </a>
+          </li>
+          <li className="wd-assignment-list-item">
+          <a className="wd-assignment-link"
+              href="#/Kanbas/Courses/1234/Assignments/456">
+              A5 - Assignment 5
+            </a>
+          </li>
+          <li className="wd-assignment-list-item">
+          <a className="wd-assignment-link"
+              href="#/Kanbas/Courses/1234/Assignments/456">
+              A6 - Assignment 6
+            </a>
+          </li>
+          <li className="wd-assignment-list-item">
+          <a className="wd-assignment-link"
+              href="#/Kanbas/Courses/1234/Assignments/456">
+              A7 - Assignment 7
+            </a>
+          </li>
+          <li className="wd-assignment-list-item">
+          <a className="wd-assignment-link"
+              href="#/Kanbas/Courses/1234/Assignments/456">
+              A8 - Assignment 8
+            </a>
           </li>
         </ul>
       </div>

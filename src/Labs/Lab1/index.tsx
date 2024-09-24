@@ -246,6 +246,23 @@ export default function Labs1() {
                     Science Fiction</option>
                 <option value="FANTASY">Fantasy</option>
             </select>
+            <h4>Other HTML field types</h4>
+
+            <label htmlFor="wd-text-fields-email"> Email: </label>
+            <input type="email"
+                placeholder="jdoe@somewhere.com" />
+            <label htmlFor="wd-text-fields-salary-start"> Starting salary:
+            </label>
+            <input type="number"
+                id="wd-text-fields-salary-start"
+                placeholder="1000" />
+            <label htmlFor="wd-text-fields-rating"> Rating: </label>
+            <input type="range" id="wd-text-fields-rating"
+                placeholder="Doe"
+                max="5" />
+            <label htmlFor="wd-text-fields-dob"> Date of birth: </label>
+            <input type="date"
+                id="wd-text-fields-dob" />
             <h4>Anchor tag</h4>
             Please
             <a id="wd-lipsum" href="https://www.lipsum.com">click here</a>

@@ -3,6 +3,12 @@ import ForegroundColors from "./Foreground";
 import BackgroundColors from "./Background";
 import Borders from "./Borders";
 import Padding from "./Padding";
+import Margins from "./Margins";
+import Corners from "./Corners";
+import Dimensions from "./Dimensions";
+import Positions from "./Positions";
+import ZIndex from "./ZIndex";
+import Float from "./Float";
 
 export default function Lab2() {
   return (
@@ -54,6 +60,12 @@ export default function Lab2() {
       <BackgroundColors />
       <Borders />
       <Padding />
+      <Margins />
+      <Corners />
+      <Dimensions />
+      <Positions />
+      <ZIndex />
+      <Float />
     </div>
   );
 }

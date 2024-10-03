@@ -9,6 +9,8 @@ import Dimensions from "./Dimensions";
 import Positions from "./Positions";
 import ZIndex from "./ZIndex";
 import Float from "./Float";
+import GridLayout from "./GridLayout";
+import Flex from "./Flex";
 
 export default function Lab2() {
   return (
@@ -66,6 +68,8 @@ export default function Lab2() {
       <Positions />
       <ZIndex />
       <Float />
+      <GridLayout />
+      <Flex />
     </div>
   );
 }

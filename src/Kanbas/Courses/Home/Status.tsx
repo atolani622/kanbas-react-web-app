@@ -27,9 +27,9 @@ export default function CourseStatus () {
       <button className = "btn btn-lg btn-secondary w-100 mt-1 text-start">
         <BsBarChartFill className = "me-2 fs-5" /> View Course Screen  </button>
       <button className = "btn btn-lg btn-secondary w-100 mt-1 text-start">
-        <BsBarChartFill className = "me-2 fs-5" /> New Annoucement  </button>
+        <FaBullhorn className = "me-2 fs-5" /> New Annoucement  </button>
       <button className = "btn btn-lg btn-secondary w-100 mt-1 text-start">
-        <FaBullhorn className = "me-2 fs-5" /> New Analytics  </button>
+        <BsBarChartFill className = "me-2 fs-5" /> New Analytics  </button>
       <button className = "btn btn-lg btn-secondary w-100 mt-1 text-start">
         <BsBellFill className = "me-2 fs-5" /> View Course Notifications  </button>
     </div>

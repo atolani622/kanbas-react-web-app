@@ -1,5 +1,8 @@
 import { FaPlus } from "react-icons/fa6";
 import GreenCheckmark from "./GreenCheckmark";
+import { MdDoNotDisturb } from "react-icons/md";
+
+
 export default function ModulesControls() {
     return (
         <div id="wd-modules-controls" className="text-nowrap">
@@ -24,23 +27,23 @@ export default function ModulesControls() {
                     </li>
                     <li>
                         <a id="wd-unpublish-all-modules-and-items" className="dropdown-item" href="#">
-                            <GreenCheckmark />
+                            <MdDoNotDisturb />
                             Unpublish all modules and items
                         </a>
                     </li>
                     <li>
                         <a id="wd-unpublish-modules-only" className="dropdown-item" href="#">
-                            <GreenCheckmark />
+                            <MdDoNotDisturb />
                             Unpublish modules only
                         </a>
                     </li>
                 </ul>
             </div>
-            <button id="wd-view-progress" className="btn btn-lg btn-info me-1 float-end">
+            <button id="wd-view-progress" className="btn btn-lg btn-secondary me-1 float-end">
                 View Progress
             </button>
 
-            <button id="wd-collapse-all" className="btn btn-lg btn-warning me-1 float-end">
+            <button id="wd-collapse-all" className="btn btn-lg btn-secondary me-1 float-end">
                 Collapse All
             </button>
         </div>

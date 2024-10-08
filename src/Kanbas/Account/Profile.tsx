@@ -9,13 +9,14 @@ export default function Profile() {
       <input placeholder="First Name" id="wd-firstname" className="form-control mb-2" />
       <input placeholder="Last Name" id="wd-lastname" className="form-control mb-2" />
       <input type="date" id="wd-dob" className="form-control mb-2" />
-      <input type="email" id="wd-email" className="form-control mb-2" />
+      <input placeholder = "email" type="email" id="wd-email" className="form-control mb-2" />
       <select defaultValue="FACULTY" id="wd-role" className="form-control mb-2">
         <option value="USER">User</option>
         <option value="ADMIN">Admin</option>
         <option value="FACULTY">Faculty</option>
         <option value="STUDENT">Student</option>
-      </select><br/>
-      <Link to="/Kanbas/Account/Signin" >Sign out</Link>
+      </select>
+      <Link to="/Kanbas/Account/Signin"
+       className="btn btn-danger w-100" >Sign out</Link>
     </div>
 );}

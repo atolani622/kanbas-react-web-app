@@ -4,19 +4,15 @@ export default function CourseNavigation() {
   const { cid } = useParams(); 
   const { pathname } = useLocation(); 
 
-  console.log("Course ID:", cid); 
-  console.log("Current Pathname:", pathname);
-
-  
   const links = [
-    { label: "Home", path: `/Courses/${cid}/Home` }, 
-    { label: "Modules", path: `/Courses/${cid}/Modules` },
-    { label: "Piazza", path: `/Courses/${cid}/Piazza` },
-    { label: "Zoom", path: `/Courses/${cid}/Zoom` },
-    { label: "Assignments", path: `/Courses/${cid}/Assignments` },
-    { label: "Quizzes", path: `/Courses/${cid}/Quizzes` }, 
-    { label: "Grades", path: `/Courses/${cid}/Grades` },
-    { label: "People", path: `/Courses/${cid}/People` },
+    { label: "Home", path: `/Kanbas/Courses/${cid}/Home` }, 
+    { label: "Modules", path: `/Kanbas/Courses/${cid}/Modules` },
+    { label: "Piazza", path: `/Kanbas/Courses/${cid}/Piazza` },
+    { label: "Zoom", path: `/Kanbas/Courses/${cid}/Zoom` },
+    { label: "Assignments", path: `/Kanbas/Courses/${cid}/Assignments` },
+    { label: "Quizzes", path: `/Kanbas/Courses/${cid}/Quizzes` }, 
+    { label: "Grades", path: `/Kanbas/Courses/${cid}/Grades` },
+    { label: "People", path: `/Kanbas/Courses/${cid}/People` },
   ];
 
   return (

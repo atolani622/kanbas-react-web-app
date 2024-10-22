@@ -4,6 +4,7 @@ import { IoCalendarOutline } from "react-icons/io5";
 import { LiaBookSolid, LiaCogSolid } from "react-icons/lia";
 import { FaInbox, FaRegCircleUser } from "react-icons/fa6";
 
+
 export default function KanbasNavigation() {
   const { pathname } = useLocation();
   const links = [

@@ -4,7 +4,7 @@ import accountReducer from "./Account/reducer";
 const store = configureStore({
   reducer: {
     modulesReducer,
-    accountReducer
+    accountReducer,
   },
 });
 export default store;

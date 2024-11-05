@@ -5,10 +5,31 @@ import { RxPencil2 } from "react-icons/rx";
 import { BsGripVertical } from 'react-icons/bs';
 import * as db from "../../Database"
 import { useParams } from "react-router";
+import React, { useState } from "react";
 
 export default function Assignments() {
     const { cid } = useParams();
-    const assignments = db.assignments;
+    const [assignments, setAssignments] = useState<any[]>(db.assignments);
+    const [assignmentName, setAssignmentName] = useState("");
+    const addAssignment = () => {
+        setAssignments([...assignments, {
+            _id: new Date().getTime().toString(),
+            name: assignmentName, course: cid
+        }]);
+        setAssignmentName("");
+    };
+    const deleteAssignment = (assignmentId: string) => {
+        setAssignments(assignments.filter((a) => a._id !== assignmentId));
+    };
+    const editAssignment = (assignmentId: string) => {
+        setAssignments(assignments.map((a) => (a._id === assignmentId ? { ...a, editing: true } : a)));
+      };
+      const updateAssignment = (assignment: any) => {
+        setAssignments(assignments.map((a) => (a._id === assignment._id ? assignment : a)));
+      };
+    
+
+
     return (
         <div>
             <AssignmentControls /> <br /> <br /> <br /> <br />
@@ -35,12 +56,14 @@ export default function Assignments() {
                                             <div className="assignment-details ms-5">
                                                 <div className="assignment-info">
                                                     <span className="text-red">{assignment.description}</span> | <b> Not availale until </b>{assignment.available_date}
-                                                      | <b>Due</b> {assignment.due_date} | {assignment.points}pts
+                                                    | <b>Due</b> {assignment.due_date} | {assignment.points}pts
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="align-self-start mt-n2">
-                                            <AssignmentControlButtons />
+                                            <AssignmentControlButtons assignmentId={assignment._id}
+                                                deleteAssignment={deleteAssignment}
+                                                editAssignment={editAssignment}/>
                                         </div>
                                     </div>
                                 </li>

@@ -1,20 +1,15 @@
 import { FaPlus } from "react-icons/fa6";
-import GreenCheckmark from "./GreenCheckmark";
-import {useLocation, useNavigate } from "react-router-dom";
 
 
 export default function AssignmentControls() {
-    const navigate = useNavigate();
-    const location = useLocation();
     return (
         <div id="wd-modules-controls" className="text-nowrap">
-            <button id="wd-add-module-btn" className="btn btn-lg btn-danger me-1 float-end"
-                data-bs-toggle="modal" data-bs-target="#wd-add-module-dialog">
+            <button id="wd-add-module-btn" className="btn btn-lg btn-danger me-1 float-end">
                 <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
                 Assignment</button>
-            <button id="wd-add-module-btn" className="btn btn-lg btn-danger me-1 float-end">
+                <button id="wd-add-module-btn" className="btn btn-lg btn-danger me-1 float-end">
                 <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
                 Group</button>
         </div>
-    );
+);
 }

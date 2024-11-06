@@ -71,8 +71,8 @@
     },
     {
       "_id": "678",
-      "username": "ring_bearer",
-      "password": "shire123",
+      "username": "akshay",
+      "password": "faculty",
       "firstName": "Frodo",
       "lastName": "Baggins",
       "email": "frodo@shire.com",
@@ -100,7 +100,7 @@
     {
       "_id": "890",
       "username": "akshay",
-      "password": "blah",
+      "password": "student",
       "firstName": "Legolas",
       "lastName": "Greenleaf",
       "email": "legolas@mirkwood.com",

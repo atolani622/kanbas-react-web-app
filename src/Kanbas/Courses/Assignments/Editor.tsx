@@ -4,15 +4,10 @@ import { useParams, useNavigate } from "react-router-dom";
 
 export default function AssignmentEditor() {
 
-  const { aid } = useParams();
+  const { cid, aid } = useParams();
   const assignments = db.assignments;
   const assignment = assignments.find(a => a._id === aid);
   const navigate = useNavigate();
-
-  const saveAssignment = () => {
-    navigate(`/Kanbas/Courses/${assignment?.course}/Assignments`);
-  };
-
   return (
     <div id="wd-assignments-editor" className="container mt-4">
       <div className="mb-3 row">
@@ -123,7 +118,7 @@ export default function AssignmentEditor() {
         <button id="wd-cancel-button" className="btn btn-danger me-2" onClick={() => navigate(`/Kanbas/Courses/${assignment?.course}/Assignments`)}>
           Cancel
         </button>
-        <button id="wd-save-button" className="btn btn-success" onClick={saveAssignment}>
+        <button id="wd-save-button" className="btn btn-success" onClick={() => navigate(`/Kanbas/Courses/${cid}/Assignments`)}>
           Save
         </button>
       </div>

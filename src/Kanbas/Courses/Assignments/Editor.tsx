@@ -1,26 +1,31 @@
 import React from "react";
-import * as db from "../../Database"
+import * as db from "../../Database";
 import { useParams, useNavigate } from "react-router-dom";
 
 export default function AssignmentEditor() {
 
   const { aid } = useParams();
-  const assignments  = db.assignments
+  const assignments = db.assignments;
   const assignment = assignments.find(a => a._id === aid);
   const navigate = useNavigate();
 
+  const saveAssignment = () => {
+    navigate(`/Kanbas/Courses/${assignment?.course}/Assignments`);
+  };
+
   return (
-      <div id="wd-assignments-editor" className="container mt-4">
-        <div className="mb-3 row">
-          <label htmlFor="wd-name" className="col-sm-2 col-form-label">Assignment Name</label>
-          <div className="col-sm-10">
-            <input 
-              id="wd-name" 
-              className="form-control" 
-              defaultValue={assignment?.title} 
-            />
-          </div>
+    <div id="wd-assignments-editor" className="container mt-4">
+      <div className="mb-3 row">
+        <label htmlFor="wd-name" className="col-sm-2 col-form-label">Assignment Name</label>
+        <div className="col-sm-10">
+          <input 
+            id="wd-name" 
+            className="form-control" 
+            defaultValue={assignment?.title} 
+          />
         </div>
+      </div>
+
       <div className="mb-3 row">
         <label htmlFor="wd-description" className="col-sm-2 col-form-label">Description</label>
         <div className="col-sm-10">
@@ -31,6 +36,7 @@ export default function AssignmentEditor() {
           />
         </div>
       </div>
+
       <div className="row mb-3">
         <div className="col-md-4">
           <div className="mb-3">
@@ -59,6 +65,7 @@ export default function AssignmentEditor() {
           </div>
         </div>
       </div>
+
       <div className="row mb-3">
         <div className="col-md-6">
           <label htmlFor="wd-submission-type" className="form-label">Submission Type</label>
@@ -92,6 +99,7 @@ export default function AssignmentEditor() {
           </div>
         </div>
       </div>
+
       <div className="row mb-3">
         <div className="col-md-3">
           <label htmlFor="wd-assign-to" className="form-label">Assign to</label>
@@ -99,7 +107,7 @@ export default function AssignmentEditor() {
         </div>
         <div className="col-md-3">
           <label htmlFor="wd-due-date" className="form-label">Due Date</label>
-          <input type="date" id="wd-due-date" className="form-control" defaultValue={assignment?.due_date}/>
+          <input type="date" id="wd-due-date" className="form-control" defaultValue={assignment?.due_date} />
         </div>
         <div className="col-md-3">
           <label htmlFor="wd-available-from" className="form-label">Available From</label>
@@ -110,11 +118,12 @@ export default function AssignmentEditor() {
           <input type="date" id="wd-available-until" className="form-control" />
         </div>
       </div>
+
       <div className="d-flex justify-content-end mt-4">
         <button id="wd-cancel-button" className="btn btn-danger me-2" onClick={() => navigate(`/Kanbas/Courses/${assignment?.course}/Assignments`)}>
           Cancel
         </button>
-        <button id="wd-save-button" className="btn btn-success" onClick={() => navigate(`/Kanbas/Courses/${assignment?.course}/Assignments`)}>
+        <button id="wd-save-button" className="btn btn-success" onClick={saveAssignment}>
           Save
         </button>
       </div>

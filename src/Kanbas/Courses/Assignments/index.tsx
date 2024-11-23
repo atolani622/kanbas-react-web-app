@@ -3,32 +3,37 @@ import AssignmentControls from "./AssignmentControls";
 import AssignmentHeaderControls from "./AssignmentHeaderControls";
 import { RxPencil2 } from "react-icons/rx";
 import { BsGripVertical } from 'react-icons/bs';
-import * as db from "../../Database"
 import { useParams } from "react-router";
-import React, { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as assignmentClient from "./client";
+import * as coursesClient from "../client";
+import { deleteAssignment, setAssignment } from "./reducer";
 
 export default function Assignments() {
     const { cid } = useParams();
-    const [assignments, setAssignments] = useState<any[]>(db.assignments);
-    const [assignmentName, setAssignmentName] = useState("");
-    const addAssignment = () => {
-        setAssignments([...assignments, {
-            _id: new Date().getTime().toString(),
-            name: assignmentName, course: cid
-        }]);
-        setAssignmentName("");
-    };
-    const deleteAssignment = (assignmentId: string) => {
-        setAssignments(assignments.filter((a) => a._id !== assignmentId));
-    };
-    const editAssignment = (assignmentId: string) => {
-        setAssignments(assignments.map((a) => (a._id === assignmentId ? { ...a, editing: true } : a)));
-      };
-      const updateAssignment = (assignment: any) => {
-        setAssignments(assignments.map((a) => (a._id === assignment._id ? assignment : a)));
-      };
-    
+    const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+    const dispatch = useDispatch();
 
+    const fetchAssignments = async () => {
+        try {
+            console.log("Fething assignments...")
+            const assignments = await coursesClient.findAssignmentForCourse(cid as string);
+            console.log('Fetched Assignments:', assignments);
+            dispatch(setAssignment(assignments));
+          } catch (error) {
+            console.error('Error fetching assignments');
+          }
+        }
+      useEffect(() => {
+        fetchAssignments();
+      }, []);
+
+    
+    const removeAssignment = async (assignmentId: string) => {
+        await assignmentClient.deleteAssignment(assignmentId);
+        dispatch(deleteAssignment(assignmentId));
+      };
 
     return (
         <div>
@@ -41,8 +46,7 @@ export default function Assignments() {
                     </div>
                     <ul className="wd-lessons list-group rounded-0">
                         {assignments
-                            .filter(assignment => assignment.course === cid)
-                            .map((assignment) => (
+                            .map((assignment: any) => (
                                 <li key={assignment._id} className="wd-lesson list-group-item p-3 ps-1">
                                     <div className="d-flex justify-content-between align-items-start">
                                         <div className="d-flex flex-column">
@@ -62,8 +66,7 @@ export default function Assignments() {
                                         </div>
                                         <div className="align-self-start mt-n2">
                                             <AssignmentControlButtons assignmentId={assignment._id}
-                                                deleteAssignment={deleteAssignment}
-                                                editAssignment={editAssignment}/>
+                                                deleteAssignment={(assignment)=>removeAssignment(assignment)}/>
                                         </div>
                                     </div>
                                 </li>

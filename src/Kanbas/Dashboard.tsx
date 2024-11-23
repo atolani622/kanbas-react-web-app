@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import axios from "axios";
+
+
 export default function Dashboard(
   { courses, course, setCourse, addNewCourse,
     deleteCourse, updateCourse }: {
@@ -8,6 +11,17 @@ export default function Dashboard(
       updateCourse: () => void;
     }) {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
+
+  const enrollInCourse = async (courseId: string) => {
+    try {
+      await axios.post(`/api/courses/${courseId}/enroll`, { userId: currentUser._id });
+      alert("Successfully enrolled in the course!");
+    } catch (err) {
+      console.error("Error enrolling in course", err);
+      alert("Failed to enroll in the course.");
+    }
+  };
+
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
@@ -45,7 +59,7 @@ export default function Dashboard(
                         deleteCourse(course._id);
                       }} className="btn btn-danger float-end"
                         id="wd-delete-course-click">
-                        Delete
+                        Unenroll
                       </button>
                       <button id="wd-edit-course-click"
                         onClick={(event) => {
@@ -55,7 +69,6 @@ export default function Dashboard(
                         className="btn btn-warning me-2 float-end" >
                         Edit
                       </button>
-
                     </div>
                   </Link>
                 </div>

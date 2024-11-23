@@ -1,12 +1,64 @@
 import * as db from "../../Database";
 import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export default function AssignmentEditor() {
-
   const { cid, aid } = useParams();
-  const assignments = db.assignments;
-  const assignment = assignments.find(a => a._id === aid);
   const navigate = useNavigate();
+  
+  const [assignments, setAssignments] = useState<any[]>(db.assignments);
+  const assignment = assignments.find(a => a._id === aid);
+
+  const [assignmentName, setAssignmentName] = useState("");
+  const [description, setDescription] = useState("");
+  const [points, setPoints] = useState("");
+  const [dueDate, setDueDate] = useState("");
+  const [availableFromDate, setAvailableFromDate] = useState("");
+  const [availableUntilDate, setAvailableUntilDate] = useState("");
+
+  useEffect(() => {
+    if (assignment) {
+      setAssignmentName(assignment.name || "");
+      setDescription(assignment.description || "");
+      setPoints(assignment.points || "");
+      setDueDate(assignment.due_date || "");
+      setAvailableFromDate(assignment.available_date || "");
+      setAvailableUntilDate(assignment.available_until || "");
+    }
+  }, [assignment]);
+
+  const addAssignment = () => {
+    const newAssignment = {
+      _id: new Date().getTime().toString(),
+      name: assignmentName,
+      description,
+      points,
+      due_date: dueDate,
+      available_date: availableFromDate,
+      available_until: availableUntilDate,
+      course: cid
+    };
+
+    setAssignments([...assignments, newAssignment]);
+
+    setAssignmentName("");
+    setDescription("");
+    setPoints("");
+    setDueDate("");
+    setAvailableFromDate("");
+    setAvailableUntilDate("");
+  };
+
+  const handleSave = () => {
+    addAssignment();
+    
+    navigate(`/Kanbas/Courses/${cid}/Assignments`);
+  };
+
+  const handleCancel = () => {
+    navigate(`/Kanbas/Courses/${cid}/Assignments`);
+  };
+
   return (
     <div id="wd-assignments-editor" className="container mt-4">
       <div className="mb-3 row">
@@ -15,7 +67,8 @@ export default function AssignmentEditor() {
           <input 
             id="wd-name" 
             className="form-control" 
-            defaultValue={assignment?.title} 
+            value={assignmentName} 
+            onChange={(e) => setAssignmentName(e.target.value)} 
           />
         </div>
       </div>
@@ -26,7 +79,8 @@ export default function AssignmentEditor() {
           <textarea
             id="wd-description"
             className="form-control"
-            defaultValue={assignment?.description}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </div>
       </div>
@@ -35,7 +89,12 @@ export default function AssignmentEditor() {
         <div className="col-md-4">
           <div className="mb-3">
             <label htmlFor="wd-points" className="form-label">Points</label>
-            <input id="wd-points" className="form-control" defaultValue={assignment?.points} />
+            <input 
+              id="wd-points" 
+              className="form-control" 
+              value={points}
+              onChange={(e) => setPoints(e.target.value)}
+            />
           </div>
         </div>
         <div className="col-md-4">
@@ -101,23 +160,41 @@ export default function AssignmentEditor() {
         </div>
         <div className="col-md-3">
           <label htmlFor="wd-due-date" className="form-label">Due Date</label>
-          <input type="date" id="wd-due-date" className="form-control" defaultValue={assignment?.due_date} />
+          <input 
+            type="date" 
+            id="wd-due-date" 
+            className="form-control" 
+            value={dueDate} 
+            onChange={(e) => setDueDate(e.target.value)} 
+          />
         </div>
         <div className="col-md-3">
           <label htmlFor="wd-available-from" className="form-label">Available From</label>
-          <input type="date" id="wd-available-from" className="form-control" defaultValue={assignment?.available_date} />
+          <input 
+            type="date" 
+            id="wd-available-from" 
+            className="form-control" 
+            value={availableFromDate} 
+            onChange={(e) => setAvailableFromDate(e.target.value)} 
+          />
         </div>
         <div className="col-md-3">
           <label htmlFor="wd-available-until" className="form-label">Available Until</label>
-          <input type="date" id="wd-available-until" className="form-control" />
+          <input 
+            type="date" 
+            id="wd-available-until" 
+            className="form-control" 
+            value={availableUntilDate} 
+            onChange={(e) => setAvailableUntilDate(e.target.value)} 
+          />
         </div>
       </div>
 
       <div className="d-flex justify-content-end mt-4">
-        <button id="wd-cancel-button" className="btn btn-danger me-2" onClick={() => navigate(`/Kanbas/Courses/${assignment?.course}/Assignments`)}>
+        <button id="wd-cancel-button" className="btn btn-danger me-2" onClick={handleCancel}>
           Cancel
         </button>
-        <button id="wd-save-button" className="btn btn-success" onClick={() => navigate(`/Kanbas/Courses/${cid}/Assignments`)}>
+        <button id="wd-save-button" className="btn btn-success" onClick={handleSave}>
           Save
         </button>
       </div>
